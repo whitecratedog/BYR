@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:orientation="horizontal"
+   android:layout_width="fill_parent"
+   android:layout_height="fill_parent"
+   >
+
+
+		<SurfaceView
+        android:orientation="vertical"
+		android:id="@+id/videoview"
+		android:layout_width="790px"
+		android:layout_height="690px"/>
+
+ 		<ImageButton
+        android:id="@+id/recordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:background="#00000000"
+        android:contentDescription="@string/record"
+        android:onClick="startRecording"
+        android:src="@drawable/ic_menu_camera" />
+
+
+    
+
+</FrameLayout>
