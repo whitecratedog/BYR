@@ -38,6 +38,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,10 +48,11 @@ public class ReadJson1 extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.json);
+		setContentView(R.layout.json1);
 		Bundle b = getIntent().getExtras();
 		String login = b.getString("login");
 		String password = b.getString("password");
+		int id = b.getInt("id");
 		//HttpClient httpclient = new DefaultHttpClient();
 		String result="";
 		String output11="";
@@ -84,7 +86,7 @@ public class ReadJson1 extends Activity {
 	                System.out.println("- " + cookies.get(i).toString());
 	            }
 	        }
-	        String test = "http://www.beatyourrecord.com/Services/Tournaments/GetTournament/?tournamentId=16335&sessionId="+result;
+	        String test = "http://www.beatyourrecord.com/Services/Tournaments/GetTournament/?tournamentId="+String.valueOf(id)+"&sessionId="+result;
 
 		
 			try {
@@ -96,7 +98,7 @@ public class ReadJson1 extends Activity {
 				HttpContext localContext = new BasicHttpContext();
 				localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
 			    HttpClient client = new DefaultHttpClient();  
-			    final TextView[] myTextViews = new TextView[10];
+			 //   final TextView[] myTextViews = new TextView[10];
 		        HttpGet get = new HttpGet(test);
 		        
 		        HttpResponse responseGet = client.execute(get,localContext);  
@@ -121,22 +123,43 @@ public class ReadJson1 extends Activity {
 		    
 				output11=store;
 			    pos = output11.indexOf("Description");
-		        output11 = output11.substring(pos+27);
-		     
-		        pos = output11.indexOf('.');
-		        output11 = output11.substring(0,pos);
-
-				TextView view12 = (TextView) findViewById(R.id.result4);
-				view12.setText("Description : " + output11);
-				
-				
+		        int pos1 = output11.indexOf('/');
+		        output11 = output11.substring(pos+27,pos1);
+		        String output12="";
+		        for(int i=0;i<output11.length();i++)
+		        {
+		        	char c =output11.charAt(i);
+		        	
+		        	if((c >='a' && c<='z') || (c>='A' && c <='Z') || (c>='0' && c<='9') || c==' ' || c==',')
+		        	{
+		        		Log.v("String",String.valueOf(c));
+		        	
+		        		output12+=String.valueOf(c);
+		        	}
+		        	else
+		        		break;
+		        	Log.v("String",output12);
+		        }
+		        TextView view12 = (TextView) findViewById(R.id.result4);
+				view12.setText("Description : " + output12);
+	
+		        output11=output12;
+		        //int i=0;
+		     /*   String description="";
+		        for(;;)
+		        {
+		        	if(!Character.isLetterOrDigit(output11.charAt(i))=true && output11.charAt(i)!=' ')
+		        		break;
+		        	i++;
+		        	description+=Sring.valueOf(output11[i]);
+		        }
+		        */
+		        Log.v("HERE3",String.valueOf(id));
+		       // pos = output11.indexOf('.');
+		       // output11 = output11.substring(0,pos);
 				
 			    store=store.substring(pos+450);
-				
-			    
-			    
-			    
-			
+
 	        /*view21.setOnClickListener(new View.OnClickListener() {
 				
 				public void onClick(View v) {
@@ -152,56 +175,29 @@ public class ReadJson1 extends Activity {
 					finish();
 				}
 			});*/
-			
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-		 
-
 			    store=store.substring(pos);
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-			    
+	
 			}
-			catch (Exception e) {
+			catch (Exception e) 
+			{
 			    e.printStackTrace();
 			}
-			
-			//String test = "http://www.beatyourrecord.com/Services/Tournaments/GetTournaments/?sessionId="+output11;
-			
-		
-		
-			
+
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		catch (Exception e) {
+		catch (Exception e) 
+		{
 		    e.printStackTrace();
-		}		
+		}
+		 Button registerScreen = (Button) findViewById(R.id.btnLogin);
+	        
+	        // Listening to register new account link
+	        registerScreen.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					// Switching to Register screen
+					Intent i = new Intent(getApplicationContext(), AndroidVideoCapture.class);
+					startActivity(i);
+				}
+			});
 		}
 }

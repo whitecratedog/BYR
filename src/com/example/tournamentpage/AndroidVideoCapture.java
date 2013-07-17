@@ -13,12 +13,14 @@ import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 public class AndroidVideoCapture extends Activity implements SurfaceHolder.Callback{
@@ -30,7 +32,8 @@ boolean recording;
 ImageButton myButton;
 File file;
 ImageButton myButton1;
-
+TextView tv ;
+TextView tv1 ;
    /** Called when the activity is first created. */
    @Override
    public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,8 @@ ImageButton myButton1;
        surfaceHolder = myVideoView.getHolder();
        surfaceHolder.addCallback(this);
        surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-      
+      this.tv = (TextView) findViewById(R.id.result);
+      this.tv1 = (TextView) findViewById(R.id.result1);
        this.myButton = (ImageButton)super.findViewById(R.id.recordButton);
        myButton.setOnClickListener(myButtonOnClickListener);
        
@@ -58,42 +62,48 @@ ImageButton myButton1;
 
  @Override
  public void onClick(View arg0) {
+	 
+	 
+	 
+	 
   // TODO Auto-generated method stub
   if(recording){
    mediaRecorder.stop();
    mediaRecorder.release();
-   Intent intent = new Intent(AndroidVideoCapture.this,VideoDemo.class);
+   Intent intent = new Intent(AndroidVideoCapture.this,ReadJson.class);
 	//intent.setData(Uri.fromFile(file));
 	startActivity(intent);
-   //finish();
+   finish();
  
    
    
   }else{
   	  
 	  
-	  
-	  
-	  
-	  
-	  
-   mediaRecorder.start();
-   recording = true;
-   Timer timer = new Timer();
-   timer.schedule(new TimerTask() {
+	    new CountDownTimer(11 * 1000, 1000) {
+            int x = 10;
 
-      public void run() 
-      {
-		mediaRecorder.stop();
-		mediaRecorder.release();
-		Intent intent = new Intent(AndroidVideoCapture.this,VideoDemo.class);
-		//intent.setData(Uri.fromFile(file));
-		startActivity(intent);
-    	  //finish();
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tv.setText(Integer.toString(x));
+                x--;
 
-      }
+            }
 
-   }, 11000);
+            @Override
+            public void onFinish() 
+            {
+            	myfunction();
+            
+            }
+            
+          
+        }.start();	  
+	  
+	  
+	  
+	  
+   
 
   }
  // myButton.setEnabled();
@@ -144,5 +154,50 @@ private void prepareMediaRecorder(){
   // TODO Auto-generated catch block
   e.printStackTrace();
  }
+}
+
+
+
+void myfunction()
+{
+    new CountDownTimer(11 * 1000, 1000) {
+        int x = 10;
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            tv1.setText(Integer.toString(x));
+            x--;
+
+        }
+
+        @Override
+        public void onFinish() 
+        {
+        	myfunction();
+        
+        }
+        
+      
+    }.start();	  
+  
+    tv.setText("");
+    mediaRecorder.start();
+    recording = true;
+    Timer timer = new Timer();
+    timer.schedule(new TimerTask() {
+
+       public void run() 
+       {
+ 		mediaRecorder.stop();
+ 		mediaRecorder.release();
+ 		Intent intent = new Intent(AndroidVideoCapture.this,ReadJson.class);
+ 		//intent.setData(Uri.fromFile(file));
+ 		startActivity(intent);
+     	  finish();
+
+       }
+
+    }, 11000);
+
 }
 }

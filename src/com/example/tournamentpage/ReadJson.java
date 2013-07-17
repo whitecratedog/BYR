@@ -105,17 +105,43 @@ public class ReadJson extends Activity {
 			
 			    store=output11;
 			    int pos=0;
-		
+			    pos=output11.indexOf("expulsion above");
+			    String trial = output11.substring(pos, pos+180);
+			    pos=trial.indexOf("Id");
+			    trial=trial.substring(pos+4,pos+9);
+			    final int id = Integer.parseInt(trial);
+				//TextView view2212 = (TextView) findViewById(R.id.result);
+			//	view2212.setText("Game Name1:" + trial);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			    pos=0;	
 		        pos = output11.indexOf("GameName");
 		        output11 = output11.substring(pos+10);
 		        pos = output11.indexOf('"');
 		        output11 = output11.substring(pos+1);
 		        pos = output11.indexOf('"');
 		        output11 = output11.substring(0,pos);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-				TextView view112 = (TextView) findViewById(R.id.result);
-				view112.setText("Game Name : " + output11);
-		    
+		        TextView view112 = (TextView) findViewById(R.id.result);
+		        view112.setText("Game Name : " + output11);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		        view112.setOnClickListener(new View.OnClickListener() {
+					
+					public void onClick(View v) {
+						// Switching to Register screen
+						Intent i = new Intent(ReadJson.this, ReadJson1.class);
+						//get.abort();
+						Bundle b = new Bundle();
+						b.putInt("id", id); //Your id
+						b.putString("login", "julia");
+						b.putString("password", "1111");//Your id
+						i.putExtras(b);
+						startActivity(i);
+						finish();
+					}
+				});
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 				output11=store;
 			    pos = output11.indexOf("GameCategory");
 		        output11 = output11.substring(pos+14);
@@ -123,11 +149,29 @@ public class ReadJson extends Activity {
 		        output11 = output11.substring(pos+1);
 		        pos = output11.indexOf('"');
 		        output11 = output11.substring(0,pos);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 				TextView view12 = (TextView) findViewById(R.id.result4);
 				view12.setText("Game Category : " + output11);
 				
-				
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		        view12.setOnClickListener(new View.OnClickListener() {
+					
+							public void onClick(View v) {
+								// Switching to Register screen
+								Intent i = new Intent(ReadJson.this, ReadJson1.class);
+								//get.abort();
+								Bundle b = new Bundle();
+								b.putInt("id", id); //Your id
+								b.putString("login", "julia");
+								b.putString("password", "1111");//Your id
+								i.putExtras(b);
+								startActivity(i);
+								finish();
+							}
+						});
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       
 				output11=store;
 			    pos = output11.indexOf("Cost");
 		        output11 = output11.substring(pos+5);
@@ -135,22 +179,51 @@ public class ReadJson extends Activity {
 		        output11 = output11.substring(pos+1);
 		        pos = output11.indexOf(',');
 		        output11 = output11.substring(0,pos);
+		       
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 				TextView view13 = (TextView) findViewById(R.id.result5);
 				view13.setText("Cost : " + output11);
-			    store=store.substring(pos+350);
-				
-			    
-			    
-			    
+		
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			    view13.setOnClickListener(new View.OnClickListener() {
+					
+					public void onClick(View v) {
+						// Switching to Register screen
+						Intent i = new Intent(ReadJson.this, ReadJson1.class);
+						//get.abort();
+						Bundle b = new Bundle();
+						b.putInt("id", id); //Your id
+						b.putString("login", "julia");
+						b.putString("password", "1111");//Your id
+						i.putExtras(b);
+						startActivity(i);
+						finish();
+					}
+				});
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			   // Log.v("store",store);
 			    output11=store;
-		        pos = output11.indexOf("GameName");
+			    pos=output11.indexOf("expulsion above");
+			    output11 = output11.substring(pos+59);
+			    pos=output11.indexOf("expulsion above");
+			    trial = output11.substring(pos);
+			    pos=trial.indexOf("Id");
+			    final String trial1=trial.substring(pos+4,pos+9);
+			   // TextView view231 = (TextView) findViewById(R.id.result7);
+			//	view231.setText("Game Name : " + trial1);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////			    
+			    store=store.substring(350);
+			    output11=store;
+				pos = output11.indexOf("GameName");
 		        output11 = output11.substring(pos+10);
 		        pos = output11.indexOf('"');
 		        output11 = output11.substring(pos+1);
 		        pos = output11.indexOf('"');
 		        output11 = output11.substring(0,pos);
-
+		      
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				TextView view21 = (TextView) findViewById(R.id.result7);
 				view21.setText("Game Name : " + output11);
 	        view21.setOnClickListener(new View.OnClickListener() {
@@ -160,26 +233,17 @@ public class ReadJson extends Activity {
 					Intent i = new Intent(ReadJson.this, ReadJson1.class);
 					//get.abort();
 					Bundle b = new Bundle();
-					b.putInt("key", 1); //Your id
-					b.putString("login", "justinpelton");
-					b.putString("password", "justin");//Your id
+					b.putInt("id", Integer.parseInt(trial1)); //Your id
+					b.putString("login", "julia");
+					b.putString("password", "1111");//Your id
 					i.putExtras(b);
 					startActivity(i);
 					finish();
 				}
 			});
 			
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-		    
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 				output11=store;
 			    pos = output11.indexOf("GameCategory");
 		        output11 = output11.substring(pos+14);
@@ -187,6 +251,7 @@ public class ReadJson extends Activity {
 		        output11 = output11.substring(pos+1);
 		        pos = output11.indexOf('"');
 		        output11 = output11.substring(0,pos);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 				TextView view22 = (TextView) findViewById(R.id.result8);
 				view22.setText("Game Category : " + output11);
@@ -198,13 +263,15 @@ public class ReadJson extends Activity {
 							//get.abort();
 							Bundle b = new Bundle();
 							b.putInt("key", 1); //Your id
-							b.putString("login", "justinpelton");
-							b.putString("password", "justin");//Your id
+							b.putInt("id", Integer.parseInt(trial1)); //Your id
+							b.putString("login", "julia");
+							b.putString("password", "1111");//Your id
 							i.putExtras(b);
 							startActivity(i);
 							finish();
 						}
 					});
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					
 						
 						
@@ -216,6 +283,7 @@ public class ReadJson extends Activity {
 		        output11 = output11.substring(pos+1);
 		        pos = output11.indexOf(',');
 		        output11 = output11.substring(0,pos);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 				TextView view23 = (TextView) findViewById(R.id.result9);
 				view23.setText("Cost : " + output11);
@@ -231,7 +299,7 @@ public class ReadJson extends Activity {
 						Intent i = new Intent(ReadJson.this, ReadJson1.class);
 						//get.abort();
 						Bundle b = new Bundle();
-						b.putInt("key", 1); //Your id
+						b.putInt("id", Integer.parseInt(trial1)); //Your id
 						b.putString("login", "julia");
 						b.putString("password", "1111");//Your id
 						i.putExtras(b);
@@ -240,6 +308,7 @@ public class ReadJson extends Activity {
 					}
 				});
 				
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					
 					
 			    

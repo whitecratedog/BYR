@@ -16,15 +16,14 @@
           android:id="@+id/header"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
-          android:background="@layout/header_gradient"
           android:paddingBottom="5dip"
           android:paddingTop="5dip" >
 
           <!-- Logo Start -->
 
           <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
+              android:layout_width="42dp"
+              android:layout_height="42dp"
               android:layout_marginLeft="10dip"
               android:src="@drawable/byr" />
           <!-- Logo Ends -->
@@ -59,8 +58,7 @@
 	    
 		android:layout_height="wrap_content" android:id="@+id/result"
 		   android:textColor="#372c24"
-              android:textSize="22sp"
-               />
+              android:textSize="22sp" />
 
 		<TextView android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:id="@+id/result4"
@@ -108,7 +106,7 @@
           android:layout_height="wrap_content"
           android:layout_below="@+id/linearLayout1"
           android:layout_centerHorizontal="true"
-          android:text="Tap on the game to see details and record video" />
+          android:text="Record" />
   </RelativeLayout>
 
 </ScrollView>

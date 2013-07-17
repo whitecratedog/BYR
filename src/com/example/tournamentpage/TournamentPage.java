@@ -2,6 +2,9 @@ package com.example.tournamentpage;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,10 +15,13 @@ public class TournamentPage extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-       Button b =(Button) findViewById(R.id.btnLogin);
-      //  TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
+        Button b = (Button) findViewById(R.id.button1);
+        Drawable defaultDrawable = findViewById(R.id.button1).getBackground();
+        //defaultDrawable=b.getDrawable();
+        b.setBackgroundColor(Color.RED);
+        //PorterDuffColorFilter filter = new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
         
-        // Listening to register new account link
+        //d.setColorFilter(filter);
       b.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
